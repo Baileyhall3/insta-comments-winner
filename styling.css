@@ -28,6 +28,14 @@
     overflow: hidden;
 }
 
+.confetti {
+  z-index: 0;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  position: absolute;
+  pointer-events: none;
+}
 
 @media (max-width: 768px) {
 

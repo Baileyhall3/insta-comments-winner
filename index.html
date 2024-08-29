@@ -17,25 +17,25 @@
             width: 100%;
             padding: 10px;
             font-size: 16px;
+            color: black;
         }
         #preview {
             margin-top: 20px;
         }
         #winners {
-            margin-top: 20px;
             list-style: none;
             padding: 0;
         }
         #winners li {
             padding: 10px;
-            margin-bottom: 5px;
         }
     </style>
     <link rel="stylesheet" href="styling.css">
     <link rel ="icon" type="image/x-icon" href="images/ink_angel_logo.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </head>
 <body>
-
+    <canvas class="confetti" id="canvas"></canvas>
     <div class="main">
 
         <fieldset id="spinner" class="ui-spinner" style="display: none;">
@@ -159,9 +159,8 @@
                     <label for="numberOfWinners" style="padding-top: 10px;">Number of Winners</label>
                     <input type="number" id="numberOfWinners" placeholder="Enter number of winners" min="1">
                 </div>
-                
-
-                <button id="fetchData" style="margin-top: 12px; background-color: pink; border: none;">Generate Winners</button>
+            
+                <button id="fetchData" style="margin-top: 12px; background-color: pink; border: none; margin-top: 20px;">Generate Winners</button>
             </div>
 
         </div>
@@ -169,12 +168,14 @@
         <div id="winnerScreen" style="display: none; justify-content: center;">
             <h2 style="padding-bottom: 20px; padding-top: 20px;">CONGRATULATIONS!</h2>
             <ul id="winners"></ul>
-
         </div>
+
     </div>
 
     <script async src="//www.instagram.com/embed.js"></script>
+    <script src="confetti.js"></script>
     <script>
+        
         document.addEventListener('DOMContentLoaded', function () {
             const generateBtn = document.getElementById("fetchData");
             const numWinnersInput = document.getElementById("numberOfWinners");
@@ -223,9 +224,13 @@
 
                     setTimeout(() => {
                         winningScreen.style.display = 'grid'
+                        initConfetti();
+                        render();
                     }, 4500);
 
             });
+
+            
         });
 
         async function spinWheel(selector) {
